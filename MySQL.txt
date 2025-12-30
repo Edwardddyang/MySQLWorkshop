@@ -1,4 +1,6 @@
 MySQL: 
+Tools: MySQL Workbench 
+
 Relational (SQL): 
   - Resembles a table spreadsheet, has rows and columns
   - Relations with keys 
@@ -82,4 +84,34 @@ Time Functions:
 
 current_date(), current_time(), now() //Functions for date/Time
   - Current_data() +- 1 adds/sub a day 
+
+
+CONSTRAINTS: 
+
+UNIQUE & NOT NULL & CHECK & DEFAULT & PRIMARY KEY & AUTO_INCREMENT: 
+  - PRIMARY: Has to be UNIQUE and NOT NULL //Only one primary key in a table 
+
+CREATE TABLE <name>(
+  column1 INT DEFAULT 0, //Determines what type of value is in that column 
+  column2 VARCHAR(50) UNIQUE, //Max # of characters, makes it so that no two things have the same one 
+  column3 DECIMAL(5, 2) NOT NULL, //Max # of digits, and precision 
+  column4 (DATE), 
+  column5 INT PRIMARY KEY AUTO_INCREMENT; //Autoincrement can only be set to a key 
+  CONSTRAINT <nameofconstraint> CHECK(condition)
+);
+
+ALTER TABLE <tablename> ADD CONSTRAINT UNIQUE(<column>); //Add unique constraint 
+
+ALTER TABLE <tablename> MODIFY <column> DECIMAL(4,2) NOT NULL; //Add a not null constraint
+
+ALTER TABLE <tablename> ADD CONSTRAINT <nameofconstraint> CHECK(condition); //Add a check constraint
+
+ALTER TABLE <tablename> DROP CHECK <nameofconstraint> //Get rid of a check 
+
+ALTER TABLE <tablename> ALTER <columnname> SET DEFAULT 0; //Add default constraint 
+
+ALTER TABLE ADD CONSTRAINT PRIMARY KEY(<column>); 
+
+ALTER TABLE <tablename> AUTO_INCREMENT = 1000; //Changes where the autoincrement starts 
+
 
