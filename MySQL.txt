@@ -88,8 +88,9 @@ current_date(), current_time(), now() //Functions for date/Time
 
 CONSTRAINTS: 
 
-UNIQUE & NOT NULL & CHECK & DEFAULT & PRIMARY KEY & AUTO_INCREMENT: 
+UNIQUE & NOT NULL & CHECK & DEFAULT & PRIMARY KEY & AUTO_INCREMENT & FOREIGN KEY: 
   - PRIMARY: Has to be UNIQUE and NOT NULL //Only one primary key in a table 
+  - FOREIGN KEY: Primary key from one table that can be found in another table, links tables 
 
 CREATE TABLE <name>(
   column1 INT DEFAULT 0, //Determines what type of value is in that column 
@@ -97,7 +98,9 @@ CREATE TABLE <name>(
   column3 DECIMAL(5, 2) NOT NULL, //Max # of digits, and precision 
   column4 (DATE), 
   column5 INT PRIMARY KEY AUTO_INCREMENT; //Autoincrement can only be set to a key 
+  FOREIGN KEY(column1) REFERENCES <tablename>(<columnname>) //Now column 1 references columnname in the other table 
   CONSTRAINT <nameofconstraint> CHECK(condition)
+
 );
 
 ALTER TABLE <tablename> ADD CONSTRAINT UNIQUE(<column>); //Add unique constraint 
@@ -113,5 +116,13 @@ ALTER TABLE <tablename> ALTER <columnname> SET DEFAULT 0; //Add default constrai
 ALTER TABLE ADD CONSTRAINT PRIMARY KEY(<column>); 
 
 ALTER TABLE <tablename> AUTO_INCREMENT = 1000; //Changes where the autoincrement starts 
+
+ALTER TABLE <tablename> ADD CONSTRAINT <foreignkeyname> FOREIGN KEY(<columnname>) REFERENCES <tablename>(<columnname>) //Names the foreign key 
+
+
+JOINS: 
+
+
+
 
 
