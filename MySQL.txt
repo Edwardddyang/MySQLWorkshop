@@ -1,0 +1,85 @@
+MySQL: 
+Relational (SQL): 
+  - Resembles a table spreadsheet, has rows and columns
+  - Relations with keys 
+
+Syntax: 
+  - Semicolon at end of each line 
+  - Erase what is inside of query so you dont run it again (erase create once youve created database)
+  - Lightning symbol to run it 
+
+Basics: 
+
+CREATE DATABASE <name> - Creates a database 
+USE <name> - Uses the database 
+DROP <name> - Deletes the database 
+ALTER DATABASE <name> READ ONLY = 0/1; - Makes database read only (cant modify/delete it)
+RENAME DATABASE/TABLE/COLUMN <name> TO <name1> 
+
+
+Tables: 
+
+CREATE TABLE <name>(
+  column1 INT, //Determines what type of value is in that column 
+  column2 VARCHAR(50) UNIQUE, //Max # of characters, makes it so that no two things have the same one 
+  column3 DECIMAL(5, 2), //Max # of digits, and precision 
+  column4 (DATE) 
+);
+
+SELECT * FROM <tablename>; - Selects/Opens the table 
+
+DROP TABLE <tablename>;
+
+
+Columns table: 
+
+1. ALTER TABLE <name> //NEED to do this before altering anything in the table 
+
+ADD <column> VARCHAR(50); //Adds a column 
+MODIFY COLUMN <name> VARCHAR(50); //Changes the type of the column 
+DROP COLUMN <name>; //Deletes the column from table
+
+2. MODIFY <columnname> VARCHAR(50) //NEED to do this and (1) before altering the column in the table 
+AFTER <columnname2>; //Puts <columnname> after <columnname2> 
+FIRST; //Puts <columname> first 
+
+
+Rows of table: 
+
+INSERT INTO <table name>
+VALUES(1, "Eugene", "35.5", "2023-01-02"), (), (); 
+
+INSERT INTO <tablename> (column1, column2, column3) //To insert only into specific columns 
+VALUES(....); 
+
+
+Query data: 
+
+SELECT * FROM <table> //shows ALL columns of table 
+SELECT <column1>, <column2> FROM <table> //Shows certain column of tables 
+
+//To see tables which specific column values 
+SELECT * FROM <table> 
+WHERE <column> = 1; 
+  - Can use comparisons like >, <, !=, IS NULL
+
+Update and delete data from table: 
+
+UPDATE <table> SET <column> = 10.25, <column2> = "efe" WHERE <column1> = 6; //Changes column and column2 based on column1
+  - Dont use where to change it for all rows 
+
+DELETE FROM <table> WHERE <column> = 6; 
+
+
+Autocommit, commit, rollback: 
+
+SET AUTOCOMMIT = OFF; //Now all transactions will not save automatically
+COMMIT; //Creates savepoint, like commits in git 
+ROLLBACK; //Goes back to previous savepoint 
+
+
+Time Functions: 
+
+current_date(), current_time(), now() //Functions for date/Time
+  - Current_data() +- 1 adds/sub a day 
+
