@@ -266,6 +266,52 @@ ON DELETE SET NULL;
 
 
 
+STORED PROCEDURE:
+  - Like functions 
+
+DELIMITER $$
+CREATE PROCEDURE <nameofprocedure>(IN id INT)
+BEGIN
+  ...
+END $$
+DELIMITER ; 
+
+CALL <nameofprodecure>();
+
+DROP PROCEDURE <nameofprocedure> 
+
+
+
+TRIGGERS: 
+  - When an event happens do something 
+
+CREATE TRIGGER <triggername> 
+BEFORE/AFTER UPDATE/INSERT on <table> 
+FOR EACH ROW 
+UPDATE <table> 
+SET NEW/OLD.<column> = NEW/OLD.(stuff); 
+WHERE ...
+
+//Updates total salary on each insert 
+create trigger salaryInsert
+after insert on employees
+for each row 
+update expenses 
+set total = total + new.salary
+where expense = "salaries" 
+
+//Update total salary when someones salary changes 
+create trigger salaryInsert
+after insert on employees
+for each row 
+update expenses 
+set total = total + new.salary
+where expense = "salaries" 
+
+
+DROP TRIGGER <triggername>
+
+
 
 
 
