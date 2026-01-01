@@ -65,6 +65,8 @@ SELECT * FROM <table>
 WHERE <column> = 1; 
   - Can use comparisons like >, <, !=, IS NULL
 
+
+
 Update and delete data from table: 
 
 UPDATE <table> SET <column> = 10.25, <column2> = "efe" WHERE <column1> = 6; //Changes column and column2 based on column1
@@ -121,6 +123,164 @@ ALTER TABLE <tablename> ADD CONSTRAINT <foreignkeyname> FOREIGN KEY(<columnname>
 
 
 JOINS: 
+  - Combines rows from two+ tables based on a related column between them 
+
+1. Inner join 
+  - Acts as a filter that only keeps the rows where there is a match in BOTH tables 
+
+SELECT * FROM <table1> INNER JOIN <table2> ON <table1>.<column1> = <table2>.<column2> 
+
+2. Right join 
+  - Keep EVERYTHING from the right table, if there is a match on the left table, show it
+
+SELECT * FROM <table1> RIGHT JOIN <table2> ON <table1>.<column1> = <table2>.<column2> 
+
+3. Left join 
+
+- Keep EVERYTHING from the left table, if there is a match on the right table, show it
+
+SELECT * FROM <table1> LEFT JOIN <table2> ON <table1>.<column1> = <table2>.<column2> 
+
+4. Self join 
+  - Join another copy of a table to itself 
+  - Used to compare rows of the same table 
+  - Helps to display a heirarchy of data 
+
+SELECT * FROM <table> AS <anyname> INNER JOIN <table1> AS <anyname1> ON <anyname>.<column> = <anyname1>.<column> //Joins table and table1 based on if the columns match and will display them side by side 
+
+
+FUNCTIONS:
+  - Check SQL website for all the functions 
+
+SELECT COUNT(<column>) FROM <table> WHERE(condition) AS <columnname>//Returns how many rows are in the column and creates a column called columnname 
+
+SELECT MAX/MIN/AVG/SUM(<column>) AS <whatevername> FROM <TABLE> 
+
+SELECT CONCAT(<column1>, <column2>) AS <whatevername> FROM <table> 
+
+
+LOGICAL OPERATORS: 
+AND, OR, NOT, AND NOT, BETWEEN, IN("cook", "cashier", "janitor"),
+< > = 
+
+SELECT * FROM <table> WHERE <column> ... 
+
+
+WILD CARD CHARACTERS: 
+
+% - Any random characters: 
+SELECT * FROM <table> WHERE <column> LIKE "s%"; //Returns columns where it starts with letter s. 
+% means any random characters 
+"%s" for end with s. 
+
+_ - ONE random character:
+SELECT * FROM <table> WHERE <column> LIKE "____-__-03" //Where date ends with 03
+
+
+ORDER BY && LIMIT CLAUSE: 
+  - Lists by an order 
+  - Limits the # of records 
+
+SELECT * FROM <table> ORDER BY <column> ASC/DESC, <column> ASC/DESC LIMIT <#>; //Orders by the columns and returns only # amount of queries 
+
+SELECT * FROM <Table> LIMIT <#>, <#>; //For large datasets, first # is offset, second # is limit 
+
+
+UNION OPERATOR: 
+  - Displays two tables union, need to have same # of columns 
+
+SELECT * FROM <table1> 
+UNION 
+SELECT * FROM <table2>;
+
+UNION ALL //Shows duplicates twice 
+
+
+
+VIEWS 
+  - Virtual table based on the result set of an SQL statement 
+  - The fields in a view are fields from one or more real tables in the database 
+  - Automatically updates values when values are added to the parent table 
+
+CREATE VIEW <viewname> as select <column>, <column> from <table> //Creates a view with columns from table 
+
+
+
+INDEXS:
+  - Data structure to find values within a specific column quickly 
+
+CREATE INDEX <indexname> on <table>(<column>) //Creates an index based on column 
+
+CREATE INDEX <indexname> on <table>(<column1>,<column2>); //Multi column index, order matters 
+
+
+
+SUBQUERY:
+  - A query within another query 
+  - query(subquery) 
+
+SELECT <column1> (SELECT avg(<column2>) from <table>) from <table> //Shows the column1, and then also column2, useful for doing two commands at once 
+
+SELECT <column1> from employees where <column1> > (SELECT AVG(<column1>) from employees); //Does two things at once, displays any row where column1 > avg(column1) 
+
+
+
+CLAUSES:
+
+1. GROUP BY:
+  - Aggregate all rows by a specific column
+  - Often used with aggregate functions: sum(), max(), min(), avg(), count()
+
+SELECT SUM(<column1>), <column2> FROM <Table> GROUP BY <column2> //Displays column1 and column2 and then grouped by column2
+
+SELECT SUM(<column1>), <column2> FROM <Table> GROUP BY <column2> HAVING .....
+//Displays column1 and column2 and then grouped by column2, HAVING is the same as WHERE 
+
+ROLLUP:
+  - Extension of GROUP BY
+  - Does group by, and then another row which sums up the row  
+
+SELECT SUM(<column1>), <column2> FROM <Table> GROUP BY <column2> WITH ROLLUP
+//Displays column1 and column2 and then grouped by column2
+
+
+2. ON DELETE
+  - ON DELETE SET NULL: When foreign key is deleted, replace with NULL
+  - ON DELETE CASCADE: When foreign key is deleted, delete row 
+
+//Creating new table: 
+CREATE TABLE <table>(
+  id INT PRIMARY KEY;
+  FOREIGN KEY (id) REFERENCES <table1>(<column>)
+  ON DELETE SET NULL 
+);
+
+//Update existing table 
+ALTER TABLE myTable
+ADD CONSTRAINT <constraintname>
+FOREIGN KEY (myColumn)         
+REFERENCES otherTable(id)
+ON DELETE SET NULL; 
+//myColumn points to id in otherTable
+// When column1 is deleted, foreign key will be set to NULL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
